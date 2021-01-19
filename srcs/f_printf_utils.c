@@ -6,11 +6,25 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:48:09 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/13 15:48:18 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/15 21:11:28 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+char	ft_strsrc(const char *str, int src)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == src)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 int	ft_atoi(const char *str)
 {

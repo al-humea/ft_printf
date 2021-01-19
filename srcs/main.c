@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:11:59 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/13 19:14:37 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/15 21:11:26 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int main(void)
 {
-	printf("%d\n", ft_printf("salut ça va"));
+	ft_printf("test output %0-c");
 	return (0);
 }
