@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:29:42 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/19 19:02:42 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/19 19:08:09 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int		f_justifying(const char *str)
 	}
 	return (0);
 }
+
 // f format met data dans struct et set type
 void	f_format(char *str, va_list args, t_flags *flags)
 {
