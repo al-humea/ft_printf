@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:56:39 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/19 13:22:29 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/19 19:02:46 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	fmat_valider(const char *str)
 	}
 	return (i+1);
 }
-//checks if formatS are valid using fmat valider
+//checks if formatS are valid using fmat valider returns the total number of % -1 if error in formats
 int	valid_fmat(const char *str)
 {
 	int	i;
@@ -78,21 +78,25 @@ int	store_fmats(const char *str, va_list args, char **fmated)
 		}
 		i++;
 	}
-	//maybe nullify end of fmated array so no confusion on next fctions
+	fmated[ret] = NULL;
 	return (0);
 }
 
 int	ft_printf(const char *str, ...)
 {
-	int		i;
+	int		i; // initialise pour avoir un i pr le display final (while)
+	int		fmat_count;
 	va_list	args;
 	char	**fmated;
 
 	i = 0;
+	fmat_count = 0;
 	va_start(args, str);
 	if((store_fmats(str, args, fmated)) == -1)
 		return (-1);
 	va_end(args);
-
-	return (i);
+	//15 lignes
+	//while display everything 
+	//free fmated
+	return (i);//+ formats lengths
 }

@@ -4,5 +4,5 @@ int main(void)
 {
 	char str;
 
-	printf("%000 4d", 52);
+	printf("%.0006d", 52);
 }

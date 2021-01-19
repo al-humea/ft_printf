@@ -6,80 +6,24 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/15 21:11:29 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/19 19:02:45 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int f_prec(const char *str)
-{
-	return (0);
-}
-
-int		f_width(const char *str)
+int		format_skip(format)
 {
 	int i;
-	int width;
 
 	i = 0;
-	width = 0;
-	while (str[i])
+	while (format[i])
 	{
-		if (ft_strsrc("123456789", str[i]))
-		
-		if (ft_strsrc("dciuspxX", str[i]))
-		{
-			i++;
-			return (width);
-		}
+		if (ft_strsrc("dciuspxX%", format[i]))
+			return (i++);
 		i++;
 	}
-}
-
-char	f_padding(const char *str)
-{
-	int i;
-
-	i = 0;
-	while(str[i])
-	{
-		if (str[i] == '0')
-			return ('0');
-		if (ft_strsrc("123456789dciuspxX."))
-			return ('\0');
-	}
-	retyrb ('\0');
-}
-int		f_justifying(const char *str)
-{
-	int i;
-
-	i = 0;
-	while(str[i])
-	{
-		if (str[i] == '-')
-			return(1);
-		if (ft_strsrc(".dciuspxX%", str[i]))
-			return (0);
-		i++;
-	}
-	return (0);
-}
-
-int		get_flags(t_flags *flags, char *format)
-{
-
-	flags->just = f_justifying(format);
-	flags->pad = f_padding(format);
-	flags->width = f_width(format);
-	flags->prec = f_prec(format);
-	/*
-	flags->type = f_type(format);
-	flags->space = f_space(format);
-	*/
-
-	return (0);
+	return (-1);
 }
 
 void	print_flags(t_flags flags)
@@ -97,11 +41,14 @@ int		handling(char *format, va_list args, char **fmated)
 	(void)args, (void)fmated;
 	int static	i = 0; // use static to keep track of fmated number
 	t_flags		*flags;
+	int			ret;
 
 	flags = malloc(sizeof(t_flags));
-	if ((get_flags(flags, format)) < 0)
+	if ((ret = get_flags(flags, format, args)) < 0)
 		return (-1);
 	print_flags(*flags);
+	//fmated[i] = flags_tostr(flags, args); flags to str being a function that returns a char *
+	//i++;
 	free(flags);
-	return (0);
+	return (format_skip(format));
 }
