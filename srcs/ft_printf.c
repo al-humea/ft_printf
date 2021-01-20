@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:56:39 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/19 19:02:46 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/20 17:59:27 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	fmat_valider(const char *str)
 		return (-1);
 	while (str[i])
 	{
-		if (ft_strsrc("dciuspxX %-*0123456789", str[i]))
+		if (ft_strsrc("dciuspxX%.-*0123456789", str[i]))
 		{
 			if (ft_strsrc("dciuspxX%", str[i]))
-				return(i+1);
+				return (++i);
 			i++;
 			continue ;
 		}
@@ -46,7 +46,7 @@ int	valid_fmat(const char *str)
 	while (str[i])
 	{
 		if (str[i] == '%')
-		{
+		{ 
 			if ((j = fmat_valider(&str[i])) == -1)
 				return (-1);
 			fmat_count++;
@@ -60,6 +60,7 @@ int	valid_fmat(const char *str)
 //stores converted formats in fmated
 int	store_fmats(const char *str, va_list args, char **fmated)
 {
+	(void) args;
 	int i;
 	int	ret;
 
@@ -85,12 +86,11 @@ int	store_fmats(const char *str, va_list args, char **fmated)
 int	ft_printf(const char *str, ...)
 {
 	int		i; // initialise pour avoir un i pr le display final (while)
-	int		fmat_count;
 	va_list	args;
 	char	**fmated;
 
+	fmated = NULL;
 	i = 0;
-	fmat_count = 0;
 	va_start(args, str);
 	if((store_fmats(str, args, fmated)) == -1)
 		return (-1);
