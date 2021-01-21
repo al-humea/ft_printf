@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:29:42 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/20 17:59:28 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/21 19:01:33 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	*fmat_arg(char type, va_list args)
 	}
 	if (type == '%')
 		ptr = ft_chardup('%');
-	return (NULL);
+	return (ptr);
 }
 
 // f format met data dans struct et set type
@@ -132,10 +132,22 @@ void	f_fmat(char *str, va_list args, t_flags *flags)
 		if (ft_strsrc("dciuspxX%", str[i]))
 		{
 			flags->type = str[i];
-			//flags->data = fmat_arg(str[i], args);
+			flags->data = fmat_arg(str[i], args);
+			break ;
 		}
 		i++;
 	}
+	return ;
+}
+
+void flags_bzero(t_flags *flags)
+{
+	flags->type = '\0';
+	flags->data = NULL;
+	flags->just = 0;
+	flags->pad = 0;
+	flags->prec = 0;
+	flags->width = 0;
 	return ;
 }
 
@@ -144,6 +156,7 @@ int		get_flags(t_flags *flags, char *format, va_list args)
 	int	fmat_size;
 
 	fmat_size = 0;
+	flags_bzero(flags);
 	f_fmat(format, args, flags); // sets type + data
 	flags->just = f_justifying(format);
 	flags->pad = f_padding(format);
@@ -152,7 +165,7 @@ int		get_flags(t_flags *flags, char *format, va_list args)
 	while (format[fmat_size])
 	{
 		if (ft_strsrc("dciuspxX%", format[fmat_size]))
-			return (fmat_size);
+			return (++fmat_size);
 		fmat_size++;
 	}
 	return (fmat_size);

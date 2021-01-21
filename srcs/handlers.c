@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/20 17:59:26 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/21 19:01:37 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		format_skip(char *format)
 
 void	print_flags(t_flags *flags)
 {
-	printf("type : %c\njst : %d|pad : %c\nprec : %d|width : %d\n\n", flags->type, flags->just, flags->pad, flags->prec, flags->width);
+	printf("type : %c  |  data : %s\njst : %d  |  pad : %c\nprec : %d  |  width : %d\n\n",flags->type, flags->data, flags->just, flags->pad, flags->prec, flags->width);
 }
 
 /*
@@ -49,6 +49,7 @@ int		handling(char *format, va_list args, char **fmated)
 	print_flags(flags);
 	//fmated[i] = flags_tostr(flags, args); flags to str being a function that returns a char *
 	//i++;
+	free(flags->data);
 	free(flags);
 	return (ret);
 }
