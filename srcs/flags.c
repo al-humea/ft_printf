@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:29:42 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/21 19:01:33 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/22 23:04:10 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,32 +91,26 @@ int		f_justifying(const char *str)
 void	*fmat_arg(char type, va_list args)
 {
 	(void)args, (void)type;
-	int		nbr;
 	void	*ptr;
 	char	*tmps;
-	char	tmpc;
 
-	tmpc = 0;
-	nbr = 0;
 	tmps = NULL;
 	ptr = NULL;//REMEMBER TO FREE
-	if (ft_strsrc("pdiuxX", type))
-	{
-		nbr = va_arg(args, int);
-		ptr = (void *)ft_strdup(ft_itoa(nbr));//REMEMBER TO TYPECAST
-	}
+	if (type == 'p')
+		ptr = (void *)ft_strdup(ft_lutoa(va_arg(args, unsigned long)));
+	if (ft_strsrc("di", type))
+		ptr = (void *)ft_strdup(ft_itoa(va_arg(args, int)));//REMEMBER TO TYPECAST
+	if (ft_strsrc("uxX", type))
+		ptr = (void *)ft_strdup(ft_utoa(va_arg(args, unsigned int)));
 	if (type == 'c')
-	{
-		tmpc = va_arg(args, int);
-		ptr = (void *)ft_chardup(tmpc);
-	}
+		ptr = (void *)ft_chardup(va_arg(args, int));
 	if (type == 's')
 	{
 		tmps = va_arg(args, char *);
 		ptr = (void *)ft_strdup(tmps);
 	}
 	if (type == '%')
-		ptr = ft_chardup('%');
+		ptr = NULL;
 	return (ptr);
 }
 

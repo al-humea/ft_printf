@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:56:39 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/21 19:01:37 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/22 23:04:14 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int	valid_fmat(const char *str)
 //stores converted formats in fmated
 int	store_fmats(const char *str, va_list args, char **fmated)
 {
-	(void) args;
 	int i;
 	int	ret;
 

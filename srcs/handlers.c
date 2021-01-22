@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/21 19:01:37 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/22 23:04:17 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,23 @@ int		format_skip(char *format)
 	return (-1);
 }
 
-void	print_flags(t_flags *flags)
+char	*flags_tostr(t_flags *flags)
 {
-	printf("type : %c  |  data : %s\njst : %d  |  pad : %c\nprec : %d  |  width : %d\n\n",flags->type, flags->data, flags->just, flags->pad, flags->prec, flags->width);
+	char	*str;
+
+	str = NULL;
+
+	if (ft_strsrc("dciuspxX", flags->type))
+		str = malloc(2);
+	str[0] = 'a';
+	str[1] = '\0';
+
+	if (flags->type == '%')
+	{
+		str = ft_chardup(flags->type);
+		return (str);
+	}
+	return (str);
 }
 
 /*
@@ -38,17 +52,19 @@ void	print_flags(t_flags *flags)
 */
 int		handling(char *format, va_list args, char **fmated)
 {
-	(void)fmated;
-	//int static	i = 0; // use static to keep track of fmated number
+	(void) fmated;
+	int static	i = 0; // use static to keep track of fmated number
 	t_flags		*flags;
 	int			ret;
 
 	flags = malloc(sizeof(t_flags));
 	if ((ret = get_flags(flags, format, args)) < 0)
 		return (-1);
-	print_flags(flags);
-	//fmated[i] = flags_tostr(flags, args); flags to str being a function that returns a char *
-	//i++;
+	fmated[i] = flags_tostr(flags);
+	write(1, "fmated : ", 9);
+	write(1, fmated[i], 2);
+	write(1, "\n", 1);
+	i++;
 	free(flags->data);
 	free(flags);
 	return (ret);

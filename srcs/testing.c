@@ -2,7 +2,5 @@
 
 int main(void)
 {
-	char str;
-
-	printf("%.x", 52);
+	printf("%u|\n", -50);
 }
