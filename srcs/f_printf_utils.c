@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:48:09 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/22 23:04:12 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/25 23:34:11 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,4 +211,38 @@ char		*ft_lutoa(unsigned long nbr)
 	nbtoright(str);
 	str[0] = nbr % 10 + 48;
 	return (str);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dst_size)
+{
+	unsigned int	i;
+	unsigned int	src_len;
+
+	if (!dst || !src)
+		return (0);
+	i = 0;
+	src_len = ft_strlen(src);
+	if (dst_size == 0)
+		return ((size_t)src_len);
+	while (i < (dst_size - 1) && src[i])
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return ((size_t)src_len);
+}
+
+void	ft_fillwith(char *dst, char c, int dst_size)
+{
+	int i;
+
+	i = 0;
+	while (i < dst_size)
+	{
+		dst[i] = c;
+		i++;
+	}
+	dst[i] = '\0';
+	return ;
 }

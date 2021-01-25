@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:29:42 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/22 23:04:10 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/25 23:34:14 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,7 @@ void flags_bzero(t_flags *flags)
 	flags->data = NULL;
 	flags->just = 0;
 	flags->pad = 0;
-	flags->prec = 0;
+	flags->prec = -1;
 	flags->width = 0;
 	return ;
 }

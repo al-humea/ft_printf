@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:51 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/22 23:04:15 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/25 23:34:12 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,16 @@ typedef struct s_flags
 //utils mostly to remove
 size_t	ft_strlen(const char *s);
 int		ft_atoi(const char *str);
-char	ft_strsrc(const char *str, int src);
+char	ft_strsrc(const char *str, int src); //To save
+void	ft_fillwith(char *dst, char c, int dst_size); //To save
 char	*ft_chardup(char c);
 char	*ft_strdup(const char *s1);
 char	*ft_itoa(int nbr);
 char	*ft_utoa(unsigned int n);
 char	*ft_lutoa(unsigned long nbr);
+size_t	ft_strlcpy(char *dst, const char *src, size_t dst_size);
+//tostr
+char	*s_tostr(char *str, t_flags *flags);
 //flags
 int		f_prec(const char *str, va_list args);
 int		f_width(const char *str, va_list args);

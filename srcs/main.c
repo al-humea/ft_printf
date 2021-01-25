@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:11:59 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/22 23:04:18 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/25 23:34:17 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(void)
 	void *ptr;
 
 	ptr = malloc(sizeof(int));
-	printf("ft_printf : %d\n", ft_printf("test str : %-052.3s\ntest int : %052.1d\ntest ptr : %10p\n", "a", 52, ptr));
+	printf("ft_printf : %d\n", ft_printf("test str : |%-010s|\n", "|test str|"));
 	free(ptr);
 	return (0);
 }

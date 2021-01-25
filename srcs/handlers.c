@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/22 23:04:17 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/25 23:34:14 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,21 @@ char	*flags_tostr(t_flags *flags)
 
 	str = NULL;
 
-	if (ft_strsrc("dciuspxX", flags->type))
+
+	if (ft_strsrc("dciupxX", flags->type))
+	{
 		str = malloc(2);
-	str[0] = 'a';
-	str[1] = '\0';
+		str[0] = 'a';
+		str[1] = '\0';
+	}
 
 	if (flags->type == '%')
 	{
 		str = ft_chardup(flags->type);
 		return (str);
 	}
+	if (flags->type == 's')
+		return (s_tostr(str, flags));
 	return (str);
 }
 
@@ -61,9 +66,6 @@ int		handling(char *format, va_list args, char **fmated)
 	if ((ret = get_flags(flags, format, args)) < 0)
 		return (-1);
 	fmated[i] = flags_tostr(flags);
-	write(1, "fmated : ", 9);
-	write(1, fmated[i], 2);
-	write(1, "\n", 1);
 	i++;
 	free(flags->data);
 	free(flags);
