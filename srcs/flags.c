@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:29:42 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/25 23:34:14 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/26 14:49:43 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int f_prec(const char *str, va_list args)
 				return (ft_atoi(&str[i]));
 		}
 		if (ft_strsrc("dciuspxX%", str[i]))
-			return (0);
+			return (-1);
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
 int		f_width(const char *str, va_list args)
