@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/26 16:50:53 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/26 19:24:16 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,21 @@ char	*flags_tostr(t_flags *flags)
 	str = NULL;
 
 
-	if (ft_strsrc("ciupxX", flags->type))
+	if (ft_strsrc("upxX", flags->type))
 	{
 		str = malloc(2);
 		str[0] = 'a';
 		str[1] = '\0';
 	}
 
-	if (flags->type == '%')
+	if (ft_strsrc("c%", flags->type))
 	{
 		str = ft_chardup(flags->type);
 		return (str);
 	}
 	if (flags->type == 's')
 		return (s_tostr(str, flags));
-	if (flags->type == 'd')
+	if (flags->type == 'di')
 		return (di_tostr(str, flags));
 	return (str);
 }
