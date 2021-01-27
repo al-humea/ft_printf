@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:56:39 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/25 23:34:15 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/27 17:17:57 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	//15 lignes
 	//while display everything 
-	//free fmated
+	//free fmated [i] after display + fmated
 	return (i);//+ formats lengths
 }

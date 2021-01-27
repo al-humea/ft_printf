@@ -6,50 +6,41 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/26 19:39:07 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/27 23:03:20 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		format_skip(char *format)
-{
-	int i;
-
-	i = 0;
-	while (format[i])
-	{
-		if (ft_strsrc("dciuspxX%", format[i]))
-			return (i++);
-		i++;
-	}
-	return (-1);
-}
-
+//Returns flags->data modified
 char	*flags_tostr(t_flags *flags)
 {
-	char	*str;
+	unsigned int	size;
+	if (flags->type == '%')
+		return (flags->data);
+	if (ft_strsrc("xXp", flags->type))
+		hexaflags(flags);
+	size = ft_strlen((char *)flags->data);
+}
 
-	str = NULL;
+int		get_flags(t_flags *flags, char *format, va_list args)
+{
+	int	fmat_size;
 
-
-	if (ft_strsrc("upxX", flags->type))
+	fmat_size = 0;
+	flags_bzero(flags);
+	f_fmat(format, args, flags); // sets type + data
+	flags->just = f_justifying(format);
+	flags->pad = f_padding(format);
+	flags->width = f_width(format, args);
+	flags->prec = f_prec(format, args);
+	while (format[fmat_size])
 	{
-		str = malloc(2);
-		str[0] = 'a';
-		str[1] = '\0';
+		if (ft_strsrc("dciuspxX%", format[fmat_size]))
+			return (++fmat_size);
+		fmat_size++;
 	}
-
-	if (ft_strsrc("c%", flags->type))
-	{
-		str = ft_chardup(flags->type);
-		return (str);
-	}
-	if (flags->type == 's')
-		return (s_tostr(str, flags));
-	if (flags->type == 'di')
-		return (di_tostr(str, flags));
-	return (str);
+	return (fmat_size);
 }
 
 /*
@@ -59,17 +50,16 @@ char	*flags_tostr(t_flags *flags)
 */
 int		handling(char *format, va_list args, char **fmated)
 {
-	(void) fmated;
+	(void)fmated;
 	int static	i = 0; // use static to keep track of fmated number
 	t_flags		*flags;
 	int			ret;
 
 	flags = malloc(sizeof(t_flags));
-	if ((ret = get_flags(flags, format, args)) < 0)
-		return (-1);
+	ret = get_flags(flags, format, args)
 	fmated[i] = flags_tostr(flags);
 	i++;
-	free(flags->data);
+//	free(flags->data); cause we use it 
 	free(flags);
 	return (ret);
 }

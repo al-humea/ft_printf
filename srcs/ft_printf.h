@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:51 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/25 23:34:12 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/27 19:12:26 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,18 @@ size_t	ft_strlen(const char *s);
 int		ft_atoi(const char *str);
 char	ft_strsrc(const char *str, int src); //To save
 void	ft_fillwith(char *dst, char c, int dst_size); //To save
+long unsigned int	ft_atolu(const char *str);//To save
 char	*ft_chardup(char c);
 char	*ft_strdup(const char *s1);
 char	*ft_itoa(int nbr);
 char	*ft_utoa(unsigned int n);
 char	*ft_lutoa(unsigned long nbr);
+char	*ft_lutox(unsigned long nbr);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dst_size);
+char	*ft_strjoin(const char *s1, const char *s2);
 //tostr
-char	*s_tostr(char *str, t_flags *flags);
+void	hexaflags(t_flags flags);
+
 //flags
 int		f_prec(const char *str, va_list args);
 int		f_width(const char *str, va_list args);

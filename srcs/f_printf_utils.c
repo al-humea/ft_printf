@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:48:09 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/26 13:26:15 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/27 19:11:38 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,4 +245,90 @@ void	ft_fillwith(char *dst, char c, int dst_size)
 	}
 	dst[i] = '\0';
 	return ;
+}
+
+char	*ft_strjoin(const char *s1, const char *s2)
+{
+	char	*joint;
+	size_t	size;
+	size_t	i;
+	size_t	i2;
+
+	if (!s1 || !s2)
+		return (NULL);
+	i = 0;
+	i2 = 0;
+	size = ft_strlen(s1) + ft_strlen(s2);
+	if (!(joint = malloc(size + 1)))
+		return (NULL);
+	while (i < size)
+	{
+		if (i < ft_strlen(s1))
+			joint[i] = s1[i];
+		else
+		{
+			joint[i] = s2[i2];
+			i2++;
+		}
+		i++;
+	}
+	joint[i] = '\0';
+	return (joint);
+}
+
+long unsigned int	ft_atolu(const char *str)
+{
+	long unsigned int	nbr;
+	unsigned int		i;
+
+	i = 0;
+	nbr = 0;
+	while (str[i] == '\t' || str[i] == ' ' || str[i] == '\n' ||
+		str[i] == '\r' || str[i] == '\v' || str[i] == '\f')
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] <= '9' && str[i] >= '0')
+	{
+		nbr = (nbr * 10) + (str[i] - 48);
+		i++;
+	}
+	return (nbr);
+}
+
+unsigned long	ft_hexalen(unsigned long nbr)
+{
+	unsigned long i;
+
+	i = 0;
+	while (nbr >= 16)
+	{
+		nbr /= 16;
+		i++;
+	}
+	return (i + 1);
+}
+
+char		*ft_lutox(unsigned long nbr)
+{
+	char *str;
+
+	if (!(str = malloc(ft_hexalen(nbr) + 1)))
+		return (NULL);
+	str[0] = '\0';
+	while (nbr >= 16)
+	{
+		nbtoright(str);
+		if ((nbr % 16) > 9)
+			str[0] = (nbr % 16) - 10 + 'a';
+		else
+			str[0] = nbr % 16 + '0';
+		nbr /= 16;
+	}
+	nbtoright(str);
+	if ((nbr % 16) > 9)
+		str[0] = (nbr % 16) - 10 + 'a';
+	else
+		str[0] = nbr % 16 + '0';
+	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:29:42 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/26 14:49:43 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/27 16:58:21 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,24 +143,4 @@ void flags_bzero(t_flags *flags)
 	flags->prec = -1;
 	flags->width = 0;
 	return ;
-}
-
-int		get_flags(t_flags *flags, char *format, va_list args)
-{
-	int	fmat_size;
-
-	fmat_size = 0;
-	flags_bzero(flags);
-	f_fmat(format, args, flags); // sets type + data
-	flags->just = f_justifying(format);
-	flags->pad = f_padding(format);
-	flags->width = f_width(format, args);
-	flags->prec = f_prec(format, args);
-	while (format[fmat_size])
-	{
-		if (ft_strsrc("dciuspxX%", format[fmat_size]))
-			return (++fmat_size);
-		fmat_size++;
-	}
-	return (fmat_size);
 }
