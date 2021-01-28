@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/27 23:03:20 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/28 20:08:54 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 //Returns flags->data modified
 char	*flags_tostr(t_flags *flags)
 {
-	unsigned int	size;
+	int	size;
+
 	if (flags->type == '%')
 		return (flags->data);
 	if (ft_strsrc("xXp", flags->type))
 		hexaflags(flags);
 	size = ft_strlen((char *)flags->data);
+	addprecision(flags, size);
+	size = ft_strlen((char *)flags->data);
+	addwidth(flags, size);
+	return (flags->data);
 }
 
 int		get_flags(t_flags *flags, char *format, va_list args)
@@ -56,10 +61,9 @@ int		handling(char *format, va_list args, char **fmated)
 	int			ret;
 
 	flags = malloc(sizeof(t_flags));
-	ret = get_flags(flags, format, args)
+	ret = get_flags(flags, format, args);
 	fmated[i] = flags_tostr(flags);
-	i++;
-//	free(flags->data); cause we use it 
+	i++; 
 	free(flags);
 	return (ret);
 }

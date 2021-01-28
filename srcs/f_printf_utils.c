@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:48:09 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/27 19:11:38 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/28 20:08:55 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,4 +331,23 @@ char		*ft_lutox(unsigned long nbr)
 	else
 		str[0] = nbr % 16 + '0';
 	return (str);
+}
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	unsigned int i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
 }

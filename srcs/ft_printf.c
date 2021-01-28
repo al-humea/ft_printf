@@ -6,11 +6,25 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:56:39 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/27 17:17:57 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/28 20:08:57 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	skipformat(const char *str)
+{
+	int	i;
+
+	i = 1;
+	while(str[i])
+	{
+		if (ft_strsrc("dciuspxX%", str[i]))
+			return (i + 1);
+		i++;
+	}
+	return (0);
+}
 
 //checks if format is valid
 int	fmat_valider(const char *str)
@@ -85,17 +99,27 @@ int	store_fmats(const char *str, va_list args, char **fmated)
 int	ft_printf(const char *str, ...)
 {
 	int		i; // initialise pour avoir un i pr le display final (while)
+	int		j;
 	va_list	args;
 	char	**fmated;
 
 	fmated = NULL;
 	i = 0;
+	j = 0;
 	va_start(args, str);
 	if((store_fmats(str, args, fmated)) == -1)
 		return (-1);
 	va_end(args);
-	//15 lignes
-	//while display everything 
-	//free fmated [i] after display + fmated
+	while (str[i])
+	{
+		if (str[i] == '%')
+		{
+			i += skipformat(&str[i]);
+			j++;
+			continue ;
+		}
+		write(1, &str[i], 1);
+		i++;
+	}
 	return (i);//+ formats lengths
 }
