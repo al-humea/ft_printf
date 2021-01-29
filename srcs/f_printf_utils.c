@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:48:09 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/29 01:14:46 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/29 11:38:38 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,33 +157,32 @@ char		*ft_itoa(int nbr)
 	return (str);
 }
 
-char	*ft_utoa(unsigned int n)
+char		*ft_utoa(unsigned int nbr)
 {
-	char			*p;
-	int				size;
-	unsigned int	x;
+	char			*str;
+	int				m;
+	unsigned int	nb;
 
-	x = n;
-	size = 0;
-	while (x > 10)
-	{
-		x /= 10;
-		size++;
-	}
-	if (!(p = (char *)malloc(sizeof(p) * (size + 1))))
+	nb = nbr;
+	m = 0;
+	if (!(str = malloc(sizeof(char) * (ft_nbrlen(nbr) + 1))))
 		return (NULL);
-	if (p)
+	if (nb < 0)
 	{
-		p[size + 1] = '\0';
-		while (size >= 0)
-		{
-			x = n % 10;
-			p[size] = 48 + x;
-			n = n / 10;
-			size--;
-		}
+		str[m] = '-';
+		nb *= -1;
+		m++;
 	}
-	return (p);
+	str[m] = '\0';
+	while (nb > 9)
+	{
+		nbtoright1(str, m);
+		str[m] = (nb % 10) + 48;
+		nb /= 10;
+	}
+	nbtoright1(str, m);
+	str[m] = nb + 48;
+	return (str);
 }
 
 static void	nbtoright(char *str)
@@ -240,12 +239,12 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dst_size)
 	return ((size_t)src_len);
 }
 
-void	ft_fillwith(char *dst, char c, int dst_size)
+void	ft_fillwith(char *dst, char c, int size)
 {
 	int i;
 
 	i = 0;
-	while (i < dst_size)
+	while (i < size)
 	{
 		dst[i] = c;
 		i++;
@@ -335,6 +334,30 @@ char		*ft_lutox(unsigned long nbr)
 	nbtoright(str);
 	if ((nbr % 16) > 9)
 		str[0] = (nbr % 16) - 10 + 'a';
+	else
+		str[0] = nbr % 16 + '0';
+	return (str);
+}
+
+char		*ft_lutocx(unsigned long nbr)
+{
+	char *str;
+
+	if (!(str = malloc(ft_hexalen(nbr) + 1)))
+		return (NULL);
+	str[0] = '\0';
+	while (nbr >= 16)
+	{
+		nbtoright(str);
+		if ((nbr % 16) > 9)
+			str[0] = (nbr % 16) - 10 + 'A';
+		else
+			str[0] = nbr % 16 + '0';
+		nbr /= 16;
+	}
+	nbtoright(str);
+	if ((nbr % 16) > 9)
+		str[0] = (nbr % 16) - 10 + 'A';
 	else
 		str[0] = nbr % 16 + '0';
 	return (str);

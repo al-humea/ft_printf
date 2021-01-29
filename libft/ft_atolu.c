@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atolu.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 14:11:59 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/29 16:05:57 by al-humea         ###   ########.fr       */
+/*   Created: 2021/01/29 10:56:06 by al-humea          #+#    #+#             */
+/*   Updated: 2021/01/29 10:59:14 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int main(void)
+long unsigned int	ft_atolu(const char *str)
 {
-	char	*ptr;
+	long unsigned int	nbr;
+	unsigned int		i;
 
-	ptr = malloc(sizeof(char) * 10);
-	ft_printf("hexa : |%*.2x|\n", 10, 42);
-	ft_printf("HEXA : |%-010X|\n", 10);
-	free(ptr);
-	return (0);
+	i = 0;
+	nbr = 0;
+	while (str[i] == '\t' || str[i] == ' ' || str[i] == '\n' ||
+		str[i] == '\r' || str[i] == '\v' || str[i] == '\f')
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while (str[i] <= '9' && str[i] >= '0')
+	{
+		nbr = (nbr * 10) + (str[i] - 48);
+		i++;
+	}
+	return (nbr);
 }

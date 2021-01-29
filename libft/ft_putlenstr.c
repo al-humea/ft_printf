@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putlenstr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 14:11:59 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/29 16:05:57 by al-humea         ###   ########.fr       */
+/*   Created: 2019/12/02 12:30:24 by al-humea          #+#    #+#             */
+/*   Updated: 2019/12/02 13:12:36 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main(void)
+void	ft_putlenstr(char *str, int len)
 {
-	char	*ptr;
+	int i;
 
-	ptr = malloc(sizeof(char) * 10);
-	ft_printf("hexa : |%*.2x|\n", 10, 42);
-	ft_printf("HEXA : |%-010X|\n", 10);
-	free(ptr);
-	return (0);
+	i = 0;
+	while (i < len && str[i])
+	{
+		ft_putchar_fd(str[i], 1);
+		i++;
+	}
 }

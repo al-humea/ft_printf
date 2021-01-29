@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 14:11:59 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/29 16:05:57 by al-humea         ###   ########.fr       */
+/*   Created: 2019/11/05 16:06:03 by al-humea          #+#    #+#             */
+/*   Updated: 2019/11/21 14:48:36 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main(void)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*ptr;
+	unsigned int i;
 
-	ptr = malloc(sizeof(char) * 10);
-	ft_printf("hexa : |%*.2x|\n", 10, 42);
-	ft_printf("HEXA : |%-010X|\n", 10);
-	free(ptr);
-	return (0);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if (c == '\0')
+		return ((char *)&s[i]);
+	return (NULL);
 }

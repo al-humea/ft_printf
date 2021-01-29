@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: al-humea <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 14:11:59 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/29 16:05:57 by al-humea         ###   ########.fr       */
+/*   Created: 2019/11/14 13:25:43 by al-humea          #+#    #+#             */
+/*   Updated: 2019/11/18 14:51:54 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main(void)
+void	ft_putendl_fd(char *s, int fd)
 {
-	char	*ptr;
+	unsigned int	i;
 
-	ptr = malloc(sizeof(char) * 10);
-	ft_printf("hexa : |%*.2x|\n", 10, 42);
-	ft_printf("HEXA : |%-010X|\n", 10);
-	free(ptr);
-	return (0);
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
+	ft_putchar_fd('\n', fd);
 }

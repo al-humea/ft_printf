@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_chardup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/08 14:11:59 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/29 16:05:57 by al-humea         ###   ########.fr       */
+/*   Created: 2019/11/29 14:58:43 by al-humea          #+#    #+#             */
+/*   Updated: 2019/12/02 13:09:57 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main(void)
+char	*ft_chardup(char c)
 {
-	char	*ptr;
+	char	*dup;
 
-	ptr = malloc(sizeof(char) * 10);
-	ft_printf("hexa : |%*.2x|\n", 10, 42);
-	ft_printf("HEXA : |%-010X|\n", 10);
-	free(ptr);
-	return (0);
+	if (!(dup = malloc(2)))
+		return (NULL);
+	dup[0] = c;
+	dup[1] = '\0';
+	return (dup);
 }

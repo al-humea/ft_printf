@@ -6,14 +6,14 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/29 01:14:49 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/29 11:38:44 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-**Returns flags->data modified
+** Returns flags->data modified
 */
 
 char	*flags_tostr(t_flags *flags)
@@ -34,12 +34,13 @@ char	*flags_tostr(t_flags *flags)
 /*
 ** f format met data dans struct et set type
 */
+
 void	f_fmat(char *str, va_list args, t_flags *flags)
 {
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (ft_strsrc("dciuspxX%", str[i]))
 		{
@@ -84,8 +85,8 @@ int		get_flags(t_flags *flags, char *format, va_list args)
 }
 
 /*
-** needs to get unconverted format, get flags, convert format using flags, store converted formats in fmated
-** using args if needed
+** needs to get unconverted format, get flags, convert format using flags,
+** store converted formats in fmated using args if needed
 ** returns size of unconverted fmat to skip in "store_fmats"
 */
 
@@ -94,10 +95,9 @@ int		handling(char *format, va_list args, char **fmated)
 	t_flags		*flags;
 	int			ret;
 
-		
 	flags = malloc(sizeof(t_flags));
 	ret = get_flags(flags, format, args);
-	*fmated = flags_tostr(flags); 
+	*fmated = flags_tostr(flags);
 	free(flags);
 	return (ret);
 }

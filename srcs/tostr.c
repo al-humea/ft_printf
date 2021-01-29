@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/29 01:14:48 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/29 11:38:43 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ void	hexaflags(t_flags *flags)
 		flags->data = ft_strjoin("0x", str);
 		free(str);
 	}
-	else
+	if (flags->type == 'x')
 		flags->data = ft_lutox(nbr);
+	if (flags->type == 'X')
+		flags->data = ft_lutocx(nbr);
 	return ;
 }
 
