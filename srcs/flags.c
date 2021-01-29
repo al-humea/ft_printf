@@ -6,13 +6,13 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:29:42 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/28 20:08:56 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/29 00:38:35 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int f_prec(const char *str, va_list args)
+int		f_prec(const char *str, va_list args)
 {
 	int i;
 
@@ -62,7 +62,7 @@ char	f_padding(const char *str)
 	int i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '0')
 			return ('0');
@@ -72,15 +72,16 @@ char	f_padding(const char *str)
 	}
 	return ('\0');
 }
+
 int		f_justifying(const char *str)
 {
 	int i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == '-')
-			return(1);
+			return (1);
 		if (ft_strsrc(".dciuspxX%", str[i]))
 			return (0);
 		i++;
@@ -90,18 +91,17 @@ int		f_justifying(const char *str)
 
 void	*fmat_arg(char type, va_list args)
 {
-	(void)args, (void)type;
 	void	*ptr;
 	char	*tmps;
 
 	tmps = NULL;
-	ptr = NULL;//REMEMBER TO FREE
+	ptr = NULL;
 	if (type == 'p')
-		ptr = (void *)ft_strdup(ft_lutoa(va_arg(args, unsigned long)));
+		ptr = (void *)ft_lutoa(va_arg(args, unsigned long));
 	if (ft_strsrc("di", type))
-		ptr = (void *)ft_strdup(ft_itoa(va_arg(args, int)));//REMEMBER TO TYPECAST
+		ptr = (void *)ft_itoa(va_arg(args, int));
 	if (ft_strsrc("uxX", type))
-		ptr = (void *)ft_strdup(ft_utoa(va_arg(args, unsigned int)));
+		ptr = (void *)ft_utoa(va_arg(args, unsigned int));
 	if (type == 'c')
 		ptr = (void *)ft_chardup(va_arg(args, int));
 	if (type == 's')
@@ -112,35 +112,4 @@ void	*fmat_arg(char type, va_list args)
 	if (type == '%')
 		ptr = NULL;
 	return (ptr);
-}
-
-// f format met data dans struct et set type
-void	f_fmat(char *str, va_list args, t_flags *flags)
-{
-	(void)args;
-	int i;
-
-	i = 0;
-	while(str[i])
-	{
-		if (ft_strsrc("dciuspxX%", str[i]))
-		{
-			flags->type = str[i];
-			flags->data = fmat_arg(str[i], args);
-			break ;
-		}
-		i++;
-	}
-	return ;
-}
-
-void flags_bzero(t_flags *flags)
-{
-	flags->type = '\0';
-	flags->data = NULL;
-	flags->just = 0;
-	flags->pad = 0;
-	flags->prec = -1;
-	flags->width = 0;
-	return ;
 }

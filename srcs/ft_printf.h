@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:51 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/28 20:08:57 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/29 01:14:50 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	f_fmat(char *str, va_list args, t_flags *flags);
 int		get_flags(t_flags *flags, char *format, va_list args);
 //main
 int		handling(char *format, va_list args, char **fmated);
-int		store_fmats(const char *str, va_list args, char **fmated);
+int	store_fmats(const char *str, va_list args, char ***fmated);
 int		ft_printf(const char *str, ...);
 
 #endif

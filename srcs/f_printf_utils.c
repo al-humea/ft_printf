@@ -6,12 +6,15 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:48:09 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/28 20:08:55 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/29 01:14:46 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-//every fctions except ft_strsrc
+
+/*
+**every fctions except ft_strsrc
+*/
 
 int	ft_nbrlen(unsigned long nbr)
 {
@@ -65,7 +68,11 @@ char	*ft_strdup(const char *s1)
 	nstr[i] = '\0';
 	return (nstr);
 }
-// Only one not to delete
+
+/*
+** Only one not to delete
+*/
+
 char	ft_strsrc(const char *str, int src)
 {
 	int i;
@@ -130,7 +137,7 @@ char		*ft_itoa(int nbr)
 
 	nb = nbr;
 	m = 0;
-	if (!(str = malloc(12)))
+	if (!(str = malloc(sizeof(char) * (ft_nbrlen(nbr) + 1))))
 		return (NULL);
 	if (nb < 0)
 	{

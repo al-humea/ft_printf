@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:11:59 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/28 17:28:06 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/29 01:14:52 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int main(void)
 {
-	ft_printf("str : |%-0*.*s|\nstr2 : |%*.5s|\nint : |%08.6d|\n", "test str", 10, 7, "hahalol", 7, 5278);
+	char	*ptr;
+
+	ptr = malloc(sizeof(char) * 10);
+	ft_printf("hexa : |%*.2x|\n", 10, 42);
+	ft_printf("HEXA : |%2.*X|\n", 10, 42);
+	free(ptr);
 	return (0);
 }

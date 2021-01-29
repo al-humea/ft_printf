@@ -6,12 +6,15 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/28 20:08:55 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/29 01:14:48 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-//Converts flags->data from alpha uns to alpha hexadecimal + adds 0x0 if ptr
+
+/*
+** Converts flags->data from alpha uns to alpha hexadecimal + adds 0x0 if ptr
+*/
 
 void	hexaflags(t_flags *flags)
 {
@@ -63,7 +66,10 @@ void	addprecision(t_flags *flags, int size)
 
 char	*addwidth2(t_flags *flags, int size, char *tmpstr)
 {
-	if (ft_strsrc("diuxX", flags->type) && flags->pad == '0' && flags->prec == -1)
+	int rtn;
+
+	rtn = ft_strsrc("diuxX", flags->type);
+	if (rtn && flags->pad == '0' && flags->prec == -1)
 		ft_fillwith(tmpstr, '0', flags->width - size);
 	else
 		ft_fillwith(tmpstr, ' ', flags->width - size);
