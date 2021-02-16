@@ -6,11 +6,9 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 16:18:37 by al-humea          #+#    #+#             */
-/*   Updated: 2019/11/29 16:46:32 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/31 12:21:32 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_nbrlen(unsigned long nbr)
 {

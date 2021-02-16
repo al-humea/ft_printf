@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: al-humea <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 14:53:12 by al-humea          #+#    #+#             */
-/*   Updated: 2019/11/19 10:51:42 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/31 12:22:55 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
 static void	nbtoright(char *str, int m)
 {

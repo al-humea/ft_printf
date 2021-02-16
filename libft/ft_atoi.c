@@ -6,11 +6,9 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 16:27:56 by al-humea          #+#    #+#             */
-/*   Updated: 2019/11/21 14:42:07 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/31 12:21:02 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "libft.h"
 
 int	ft_atoi(const char *str)
 {

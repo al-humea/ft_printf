@@ -6,11 +6,11 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 15:29:06 by al-humea          #+#    #+#             */
-/*   Updated: 2019/12/02 13:10:50 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/01/31 12:23:02 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
 static void	nbtoright(char *str)
 {

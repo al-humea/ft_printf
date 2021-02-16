@@ -6,11 +6,11 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 10:37:01 by al-humea          #+#    #+#             */
-/*   Updated: 2019/11/21 14:50:21 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/02/15 16:49:07 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/ft_printf.h"
 
 char	*ft_strdup(const char *s1)
 {

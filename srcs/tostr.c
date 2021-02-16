@@ -6,15 +6,39 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/29 11:38:43 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/02/15 20:45:22 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 /*
 ** Converts flags->data from alpha uns to alpha hexadecimal + adds 0x0 if ptr
 */
+
+char	*pointers_tostr(char *type, va_list args)
+{
+	void *ptr;
+
+	ptr = NULL;
+	ptr = va_arg(args, void *);
+	if (!ptr)
+	{
+		if (*type == 'p')
+			ptr = (void *)ft_strdup("(nil)");
+		if (*type == 's')
+			ptr = (void *)ft_strdup("(null)");
+		*type = 'n';
+	}
+	else
+	{
+		if (*type == 'p')
+			ptr = (void *)ft_lutoa((unsigned long)ptr);
+		if (*type == 's')
+			ptr = (void *)ft_strdup((char *)ptr);
+	}
+	return (ptr);
+}
 
 void	hexaflags(t_flags *flags)
 {
@@ -48,7 +72,6 @@ void	addprecision(t_flags *flags, int size)
 	{
 		str = malloc(sizeof(char) * (flags->prec + 1));
 		ft_strlcpy(str, flags->data, flags->prec + 1);
-		str[flags->prec] = '\0';
 		free(flags->data);
 		flags->data = str;
 		return ;

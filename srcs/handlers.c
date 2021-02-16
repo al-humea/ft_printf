@@ -6,11 +6,11 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/29 11:38:44 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/02/15 20:45:23 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 /*
 ** Returns flags->data modified
@@ -20,7 +20,7 @@ char	*flags_tostr(t_flags *flags)
 {
 	int	size;
 
-	if (flags->type == '%')
+	if (ft_strsrc("n%", flags->type) == 1)
 		return (flags->data);
 	if (ft_strsrc("xXp", flags->type))
 		hexaflags(flags);
@@ -45,7 +45,7 @@ void	f_fmat(char *str, va_list args, t_flags *flags)
 		if (ft_strsrc("dciuspxX%", str[i]))
 		{
 			flags->type = str[i];
-			flags->data = fmat_arg(str[i], args);
+			flags->data = fmat_arg(&flags->type, args);
 			break ;
 		}
 		i++;

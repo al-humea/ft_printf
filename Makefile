@@ -6,34 +6,57 @@
 #    By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/29 16:19:34 by al-humea          #+#    #+#              #
-#    Updated: 2021/01/29 18:48:45 by al-humea         ###   ########.fr        #
+#    Updated: 2021/01/31 12:24:28 by al-humea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRC =	srcs/ft_printf.c\
+SRCS =	./ft_printf.c\
 		srcs/handlers.c\
 		srcs/flags.c\
-		srcs/tostr.c
+		srcs/tostr.c\
+		libft/ft_atoi.c\
+		libft/ft_atolu.c\
+		libft/ft_itoa.c\
+		libft/ft_utoa.c\
+		libft/ft_lutoa.c\
+		libft/ft_lutox.c\
+		libft/ft_lutocx.c\
+		libft/ft_fillwith.c\
+		libft/ft_nbrlen.c\
+		libft/ft_strdup.c\
+		libft/ft_chardup.c\
+		libft/ft_strsrc.c\
+		libft/ft_strlen.c\
+		libft/ft_hexalen.c\
+		libft/ft_strlcpy.c\
+		libft/ft_strjoin.c\
+		libft/ft_putstr_fd.c\
+		libft/ft_putchar_fd.c
 
-INCLUDES = -I./includes/
+OBJS	=	$(SRCS:.c=.o)
 
-CC = clang
+HEADER	=	./includes/ft_printf.h
 
-FLAGS = -c -Wall -Wextra -Werror
+RM	=	rm -f
 
-OBJS = $(SRCS:.c=.o)
+FLAGS	=	-Wall -Wextra -Werror -g
 
-all: $(NAME)
+.c.o:
+	clang $(FLAGS) -I $(HEADER) -c $< -o $(<:.c=.o)
 
-$(NAME): $(OBJS)
-	$(CC) -o $(INCLUDES) $(NAME) $(SRC)
+$(NAME) : $(OBJS)
+	ar -rcs libftprintf.a $(OBJS)
+
+all:	$(NAME)
 
 clean:
+		$(RM) $(OBJS)
 
-fclean: clean
+fclean:	clean
+	$(RM) $(NAME)
 
-re : fclean all
+re:		fclean all
 
 .PHONY: all clean fclean re

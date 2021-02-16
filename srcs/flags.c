@@ -6,11 +6,11 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:29:42 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/29 10:21:05 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/02/15 20:45:23 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int		f_prec(const char *str, va_list args)
 {
@@ -89,27 +89,27 @@ int		f_justifying(const char *str)
 	return (0);
 }
 
-void	*fmat_arg(char type, va_list args)
+/*
+** PBM étant de savoir quand (null) est un vrai (null) ou un
+** null envoyé en paramètre (pour gerer width prec)
+*/
+
+void	*fmat_arg(char *type, va_list args)
 {
 	void	*ptr;
 	char	*tmps;
 
 	tmps = NULL;
 	ptr = NULL;
-	if (type == 'p')
-		ptr = (void *)ft_lutoa(va_arg(args, unsigned long));
-	if (ft_strsrc("di", type))
+	if (*type == 'p' || *type == 's')
+		ptr = (void *)pointers_tostr(type, args);
+	if (ft_strsrc("di", *type))
 		ptr = (void *)ft_itoa(va_arg(args, int));
-	if (ft_strsrc("uxX", type))
+	if (ft_strsrc("uxX", *type))
 		ptr = (void *)ft_utoa(va_arg(args, unsigned int));
-	if (type == 'c')
+	if (*type == 'c')
 		ptr = (void *)ft_chardup(va_arg(args, int));
-	if (type == 's')
-	{
-		tmps = va_arg(args, char *);
-		ptr = (void *)ft_strdup(tmps);
-	}
-	if (type == '%')
-		ptr = NULL;
+	if (*type == '%')
+		ptr = (void *)ft_chardup('%');
 	return (ptr);
 }
