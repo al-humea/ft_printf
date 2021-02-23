@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/02/15 20:45:23 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/02/23 18:43:29 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*flags_tostr(t_flags *flags)
 {
 	int	size;
 
-	if (ft_strsrc("n%", flags->type) == 1)
+	if (ft_strsrc("%", flags->type) == 1)
 		return (flags->data);
 	if (ft_strsrc("xXp", flags->type))
 		hexaflags(flags);
