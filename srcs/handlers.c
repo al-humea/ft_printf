@@ -6,11 +6,12 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/02/23 18:43:29 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/02/26 13:53:33 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+#include <stdio.h>
 
 /*
 ** Returns flags->data modified
@@ -90,6 +91,17 @@ int		get_flags(t_flags *flags, char *format, va_list args)
 ** returns size of unconverted fmat to skip in "store_fmats"
 */
 
+void printflags(t_flags *flags)
+{
+	printf("---\n");
+	printf("%c\n", flags->type);
+	printf("%d\n", flags->just);
+	printf("%c\n", flags->pad);
+	printf("%d\n", flags->width);
+	printf("%d\n", flags->prec);
+	printf("%s\n", flags->data);
+}
+
 int		handling(char *format, va_list args, char **fmated)
 {
 	t_flags		*flags;
@@ -97,6 +109,7 @@ int		handling(char *format, va_list args, char **fmated)
 
 	flags = malloc(sizeof(t_flags));
 	ret = get_flags(flags, format, args);
+	printflags(flags);
 	*fmated = flags_tostr(flags);
 	free(flags);
 	return (ret);

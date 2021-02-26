@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/02/23 18:43:33 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/02/26 13:58:39 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	addprecision(t_flags *flags, int size)
 	if ((flags->type == 's') && (flags->prec < size))
 	{
 		str = malloc(sizeof(char) * (flags->prec + 1));
-		ft_strlcpy(str, flags->data, flags->prec + 1);
+		ft_strlcpy(str, flags->data, flags->prec);
 		free(flags->data);
 		flags->data = str;
 		return ;

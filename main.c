@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 15:49:44 by al-humea          #+#    #+#             */
-/*   Updated: 2021/02/23 18:45:02 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/02/25 15:17:36 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 int	main(int ac, char **av)
 {
-	if (ac < 1)
-		return (0);
-
+	printf("this is a test |%s|.\n", "str");
+	ft_printf("this is a test |%s|.\n", "str");
 	return (0);
 }
