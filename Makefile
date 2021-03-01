@@ -6,16 +6,17 @@
 #    By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/29 16:19:34 by al-humea          #+#    #+#              #
-#    Updated: 2021/01/31 12:24:28 by al-humea         ###   ########.fr        #
+#    Updated: 2021/03/01 18:07:47 by al-humea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 SRCS =	./ft_printf.c\
-		srcs/handlers.c\
+		srcs/handling.c\
 		srcs/flags.c\
 		srcs/tostr.c\
+		srcs/length.c\
 		libft/ft_atoi.c\
 		libft/ft_atolu.c\
 		libft/ft_itoa.c\

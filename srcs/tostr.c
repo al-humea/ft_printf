@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/02/26 13:58:39 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/01 17:17:01 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*pointers_tostr(char *type, va_list args)
 	return (ptr);
 }
 
-void	hexaflags(t_flags *flags)
+void	hexa_tostr(t_flags *flags)
 {
 	char				*str;
 	unsigned long int	nbr;
@@ -61,66 +61,46 @@ void	hexaflags(t_flags *flags)
 	return ;
 }
 
-void	addprecision(t_flags *flags, int size)
-{
-	char	*str;
-	char	*tmpstr;
+/*
+** Returns flags->data modified
+*/
 
-	tmpstr = NULL;
-	str = NULL;
-	if ((flags->type == 's') && (flags->prec < size))
-	{
-		str = malloc(sizeof(char) * (flags->prec + 1));
-		ft_strlcpy(str, flags->data, flags->prec);
-		free(flags->data);
-		flags->data = str;
-		return ;
-	}
-	if (ft_strsrc("diuXx", flags->type) && flags->prec > size)
-	{
-		str = malloc(sizeof(char) * (flags->prec - size + 1));
-		ft_fillwith(str, '0', flags->prec - size);
-		tmpstr = ft_strjoin(str, flags->data);
-		free(str);
-		free(flags->data);
-		flags->data = tmpstr;
-		return ;
-	}
-	return ;
+char	*flags_tostr(t_flags *flags)
+{
+	int	size;
+
+	if (ft_strsrc("%", flags->type) == 1)
+		return (flags->data);
+	if (ft_strsrc("xXp", flags->type))
+		hexa_tostr(flags);
+	size = ft_strlen((char *)flags->data);
+	addprecision(flags, size);
+	size = ft_strlen((char *)flags->data);
+	addwidth(flags, size);
+	return (flags->data);
 }
 
-char	*addwidth2(t_flags *flags, int size, char *tmpstr)
+/*
+** PBM étant de savoir quand (null) est un vrai (null) ou un
+** null envoyé en paramètre (pour gerer width prec)
+*/
+
+void	*data_tostr(char *type, va_list args)
 {
-	int rtn;
+	void	*ptr;
+	char	*tmps;
 
-	rtn = ft_strsrc("diuxX", flags->type);
-	if (rtn && flags->pad == '0' && flags->prec == -1)
-		ft_fillwith(tmpstr, '0', flags->width - size);
-	else
-		ft_fillwith(tmpstr, ' ', flags->width - size);
-	return (ft_strjoin(tmpstr, flags->data));
-}
-
-void	addwidth(t_flags *flags, int size)
-{
-	char	*str;
-	char	*tmpstr;
-
-	str = NULL;
-	tmpstr = NULL;
-	if (flags->width > size)
-	{
-		tmpstr = malloc(sizeof(char) * (flags->width - size + 1));
-		if (flags->just == 1)
-		{
-			ft_fillwith(tmpstr, ' ', flags->width - size);
-			str = ft_strjoin(flags->data, tmpstr);
-		}
-		else
-			str = addwidth2(flags, size, tmpstr);
-		free(flags->data);
-		free(tmpstr);
-		flags->data = str;
-	}
-	return ;
+	tmps = NULL;
+	ptr = NULL;
+	if (*type == 'p' || *type == 's')
+		ptr = (void *)pointers_tostr(type, args);
+	if (ft_strsrc("di", *type))
+		ptr = (void *)ft_itoa(va_arg(args, int));
+	if (ft_strsrc("uxX", *type))
+		ptr = (void *)ft_utoa(va_arg(args, unsigned int));
+	if (*type == 'c')
+		ptr = (void *)ft_chardup(va_arg(args, int));
+	if (*type == '%')
+		ptr = (void *)ft_chardup('%');
+	return (ptr);
 }
