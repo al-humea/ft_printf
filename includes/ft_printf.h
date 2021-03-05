@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:51 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/01 18:41:30 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/05 17:03:30 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ char				*ft_lutoa(unsigned long nbr);
 char				*ft_lutox(unsigned long nbr);
 char				*ft_lutocx(unsigned long nbr);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dst_size);
+void				*ft_memset(void *b, int c, size_t len);
 char				*ft_strjoin(const char *s1, const char *s2);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putchar_fd(char c, int fd);
@@ -81,6 +82,7 @@ int					handling(char *format, va_list args, char **fmated);
 ** length.c
 */
 
+void				di_addprecision(t_flags *flags, char *str);
 void				addprecision(t_flags *flags, int size);
 char				*addwidth2(t_flags *flags, int size, char *tmpstr);
 void				addwidth(t_flags *flags, int size);

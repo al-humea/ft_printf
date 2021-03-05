@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:56:39 by al-humea          #+#    #+#             */
-/*   Updated: 2021/02/23 18:43:31 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/02 20:14:30 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,10 @@ int	store_fmats(const char *str, va_list args, char ***fmated)
 	(*fmated)[ret] = NULL;
 	return (0);
 }
+
+/*
+** ADD THE SIZE FMATED ELEMENTS TO RETURN VALUE
+*/
 
 int	ft_printf(const char *str, ...)
 {

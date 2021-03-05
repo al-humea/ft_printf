@@ -6,18 +6,46 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 16:40:14 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/01 18:41:29 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/05 18:49:28 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
+/*
+** if no precision precision = size
+*/
+
+void	di_addprecision(t_flags *flags, char *str)
+{
+	int				num_size;
+	unsigned int	difference;
+
+	num_size = ft_strlen(flags->data);
+	if (ft_atoi(flags->data) < 0)
+	{
+		num_size -= 1;
+		difference = flags->prec - num_size;
+		str = malloc(sizeof(char) * (flags->prec + 2));
+		str[0] = '-';
+		ft_fillwith(&str[1], '0', difference);
+		ft_strlcpy(&str[1 + difference], &flags->data[1], num_size + 1);
+	}
+	else
+	{
+		difference = flags->prec - num_size;
+		str = malloc(sizeof(char) * (flags->prec + 1));
+		ft_fillwith(str, '0', difference);
+		ft_strlcpy(&str[difference], flags->data, num_size + 1);
+	}
+	free(flags->data);
+	flags->data = str;
+}
+
 void	addprecision(t_flags *flags, int size)
 {
 	char	*str;
-	char	*tmpstr;
 
-	tmpstr = NULL;
 	str = NULL;
 	if (flags->prec == -1)
 		flags->prec = size;
@@ -27,17 +55,17 @@ void	addprecision(t_flags *flags, int size)
 		ft_strlcpy(str, flags->data, flags->prec + 1);
 		free(flags->data);
 		flags->data = str;
-		return ;
 	}
-	if (ft_strsrc("diuXx", flags->type) && flags->prec > size)
+	if (ft_strsrc("uxX", flags->type) && flags->prec > size)
 	{
-		str = malloc(sizeof(char) * (flags->prec - size + 1));
-		ft_fillwith(str, '0', flags->prec - size);
-		tmpstr = ft_strjoin(str, flags->data);
-		free(str);
+		str = malloc(sizeof(char) * (flags->prec + 1));
+		ft_memset(str, '0', flags->prec - size);
+		ft_strlcpy(&str[flags->prec - size], flags->data, size);
 		free(flags->data);
-		flags->data = tmpstr;
+		flags->data = str;
 	}
+	if (ft_strsrc("di", flags->type) && flags->prec >= size)
+		di_addprecision(flags, str);
 	return ;
 }
 

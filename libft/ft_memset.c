@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debugging.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/01 14:16:51 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/05 19:15:46 by al-humea         ###   ########.fr       */
+/*   Created: 2019/11/05 10:06:48 by al-humea          #+#    #+#             */
+/*   Updated: 2021/03/05 14:01:43 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include <stdio.h>
+#include "../includes/ft_printf.h"
 
-/*
-** TO FIX :
-** WIDTH(with 0)/PREC WITH NEGATIVE VALUES
-** LENGHT MODIFIERS WITH NULL VARIABLES
-*/
-
-int main(void)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	printf("---------PRINTF----------\n");
-	printf("|%.d|\n", 1);
-	printf("--------FT_PRINTF--------\n");
-	ft_printf("|%.d|\n", 1);
-	printf("-------------------------\n");
+	size_t	i;
+	char	*s;
+
+	s = b;
+	i = 0;
+	while (i < len)
+	{
+		s[i] = c;
+		i++;
+	}
+	return (b);
 }

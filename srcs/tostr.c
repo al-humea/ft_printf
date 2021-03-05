@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/01 17:17:01 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/05 19:15:45 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,16 @@ char	*flags_tostr(t_flags *flags)
 		hexa_tostr(flags);
 	size = ft_strlen((char *)flags->data);
 	addprecision(flags, size);
+	if (flags->prec == 0 && ft_strsrc("di", flags->type))
+		if (ft_atoi(flags->data) == 0)
+		{
+			free(flags->data);
+			flags->data = ft_strdup("");
+		}
 	size = ft_strlen((char *)flags->data);
 	addwidth(flags, size);
 	return (flags->data);
 }
-
-/*
-** PBM étant de savoir quand (null) est un vrai (null) ou un
-** null envoyé en paramètre (pour gerer width prec)
-*/
 
 void	*data_tostr(char *type, va_list args)
 {
