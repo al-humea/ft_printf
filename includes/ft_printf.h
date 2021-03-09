@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:51 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/05 17:03:30 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/09 18:42:11 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char				*flags_tostr(t_flags *flags);
 
 int					f_prec(const char *str, va_list args);
 int					f_width(const char *str, va_list args);
-char				f_padding(const char *str);
+char				f_padding(const char *str, int prec);
 int					f_justifying(const char *str);
 
 

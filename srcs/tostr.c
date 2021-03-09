@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/05 19:15:45 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/09 19:54:23 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ char	*flags_tostr(t_flags *flags)
 		hexa_tostr(flags);
 	size = ft_strlen((char *)flags->data);
 	addprecision(flags, size);
-	if (flags->prec == 0 && ft_strsrc("di", flags->type))
-		if (ft_atoi(flags->data) == 0)
+	if (flags->prec == 0 && ft_strsrc("diuxX", flags->type))
+		if (((char *)flags->data)[0] == '0')
 		{
 			free(flags->data);
 			flags->data = ft_strdup("");

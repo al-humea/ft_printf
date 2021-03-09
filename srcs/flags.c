@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:29:42 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/02 20:14:25 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/09 18:43:35 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,20 @@ int		f_width(const char *str, va_list args)
 	return (0);
 }
 
-char	f_padding(const char *str)
+char	f_padding(const char *str, int prec)
 {
 	int i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '0')
+		if (str[i] == '0' && prec == -1)
 			return ('0');
 		if (ft_strsrc("123456789.dciuspxX%", str[i]))
-			return ('\0');
+			return (' ');
 		i++;
 	}
-	return ('\0');
+	return (' ');
 }
 
 int		f_justifying(const char *str)

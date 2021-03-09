@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 16:40:14 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/05 18:49:28 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/09 19:16:02 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	di_addprecision(t_flags *flags, char *str)
 	num_size = ft_strlen(flags->data);
 	if (ft_atoi(flags->data) < 0)
 	{
-		num_size -= 1;
-		difference = flags->prec - num_size;
+		difference = flags->prec - (num_size - 1);
 		str = malloc(sizeof(char) * (flags->prec + 2));
 		str[0] = '-';
 		ft_fillwith(&str[1], '0', difference);
@@ -47,8 +46,10 @@ void	addprecision(t_flags *flags, int size)
 	char	*str;
 
 	str = NULL;
-	if (flags->prec == -1)
+	if (!ft_strsrc("di", flags->type) && flags->prec == -1)
 		flags->prec = size;
+	else if (flags->prec == -1 && ft_atoi(flags->data) < 0)
+		flags->prec = size - 1;
 	if ((flags->type == 's') && (flags->prec < size))
 	{
 		str = malloc(sizeof(char) * (flags->prec + 1));
@@ -60,7 +61,7 @@ void	addprecision(t_flags *flags, int size)
 	{
 		str = malloc(sizeof(char) * (flags->prec + 1));
 		ft_memset(str, '0', flags->prec - size);
-		ft_strlcpy(&str[flags->prec - size], flags->data, size);
+		ft_strlcpy(&str[flags->prec - size], flags->data, size + 1);
 		free(flags->data);
 		flags->data = str;
 	}
@@ -69,16 +70,26 @@ void	addprecision(t_flags *flags, int size)
 	return ;
 }
 
-char	*addwidth2(t_flags *flags, int size, char *tmpstr)
+void	negnumberswidth(t_flags *flags, char *tmpstr, int zeros)
 {
-	int rtn;
+	char	*data_save;
 
-	rtn = ft_strsrc("diuxX", flags->type);
-	if (rtn && flags->pad == '0' && flags->prec == -1)
-		ft_fillwith(tmpstr, '0', flags->width - size);
+	data_save = NULL;
+	if (flags->pad == '0')
+	{
+		if (ft_strsrc("di", flags->type) && (ft_atoi(flags->data) < 0))
+		{
+			tmpstr[0] = '-';
+			data_save = ft_strdup(&flags->data[1]);
+			free(flags->data);
+			flags->data = data_save;
+			ft_fillwith(&tmpstr[1], '0', zeros);
+		}
+		else
+			ft_fillwith(tmpstr, '0', zeros);
+	}
 	else
-		ft_fillwith(tmpstr, ' ', flags->width - size);
-	return (ft_strjoin(tmpstr, flags->data));
+		ft_fillwith(tmpstr, ' ', zeros);
 }
 
 void	addwidth(t_flags *flags, int size)
@@ -97,7 +108,13 @@ void	addwidth(t_flags *flags, int size)
 			str = ft_strjoin(flags->data, tmpstr);
 		}
 		else
-			str = addwidth2(flags, size, tmpstr);
+		{
+			if (ft_strsrc("diuxX", flags->type))
+				negnumberswidth(flags, tmpstr, flags->width - size);
+			else
+				ft_fillwith(tmpstr, ' ', flags->width - size);
+			str = ft_strjoin(tmpstr, flags->data);
+		}
 		free(flags->data);
 		free(tmpstr);
 		flags->data = str;
