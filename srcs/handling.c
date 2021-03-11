@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/09 18:42:41 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/10 17:35:17 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		get_flags(t_flags *flags, char *format, va_list args)
 	flags->width = f_width(format, args);
 	flags->prec = f_prec(format, args);
 	f_fmat(format, args, flags);
-	flags->just = f_justifying(format);
+	flags->just = f_justifying(flags, format);
 	flags->pad = f_padding(format, flags->prec);
 	while (format[fmat_size])
 	{
