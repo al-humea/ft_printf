@@ -6,7 +6,7 @@
 #    By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/29 16:19:34 by al-humea          #+#    #+#              #
-#    Updated: 2021/03/05 18:20:31 by al-humea         ###   ########.fr        #
+#    Updated: 2021/03/17 10:53:51 by al-humea         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ SRCS =	./ft_printf.c\
 		libft/ft_memset.c\
 		libft/ft_strjoin.c\
 		libft/ft_putstr_fd.c\
-		libft/ft_putchar_fd.c
+		libft/ft_putstrl_fd.c\
+		libft/ft_putchar_fd.c\
+		libft/ft_spamc.c
 
 OBJS	=	$(SRCS:.c=.o)
 

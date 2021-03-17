@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/10 17:35:18 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:29:10 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,15 @@ void	hexa_tostr(t_flags *flags)
 ** Returns flags->data modified
 */
 
-char	*flags_tostr(t_flags *flags)
+int		flags_tostr(t_flags *flags)
 {
 	int	size;
 
 	if (ft_strsrc("%", flags->type) == 1)
-		return (flags->data);
+	{
+		ft_putchar_fd('%', 1);
+		return (1);
+	}
 	if (ft_strsrc("xXp", flags->type))
 		hexa_tostr(flags);
 	size = ft_strlen((char *)flags->data);
@@ -81,9 +84,12 @@ char	*flags_tostr(t_flags *flags)
 			free(flags->data);
 			flags->data = ft_strdup("");
 		}
-	size = ft_strlen((char *)flags->data);
-	addwidth(flags, size);
-	return (flags->data);
+	if (flags->type == 'c')
+		size = 1;
+	else
+		size = ft_strlen((char *)flags->data);
+	size += addwidth(flags, size);
+	return (size);
 }
 
 void	*data_tostr(char *type, va_list args)

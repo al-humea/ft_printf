@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:56:39 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/10 17:35:17 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:22:17 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,65 +81,33 @@ int	valid_fmat(const char *str)
 }
 
 /*
-**stores converted formats in fmated
-*/
-
-int	store_fmats(const char *str, va_list args, char ***fmated)
-{
-	int	i;
-	int	j;
-	int	ret;
-
-	if ((ret = valid_fmat(str)) == -1)
-		return (-1);
-	if (!(*fmated = malloc(sizeof(char *) * (ret + 1))))
-		return (-1);
-	i = 0;
-	j = 0;
-	while (str[i])
-	{
-		if (str[i] == '%')
-		{
-			i++;
-			i += handling((char *)&str[i], args, &(*fmated)[j]);
-			j++;
-			continue ;
-		}
-		i++;
-	}
-	(*fmated)[ret] = NULL;
-	return (0);
-}
-
-/*
 ** ADD THE SIZE FMATED ELEMENTS TO RETURN VALUE
 */
-
+#include <stdio.h>
 int	ft_printf(const char *str, ...)
 {
 	int		i;
 	int		j;
+	int		fmats_size;
 	va_list	args;
-	char	**fmated;
 
-	fmated = NULL;
+	fmats_size = 0;
 	i = 0;
 	j = 0;
-	va_start(args, str);
-	if ((store_fmats(str, args, &fmated)) == -1)
+	if (valid_fmat(str) == -1)
 		return (-1);
-	va_end(args);
-	while (str[i])
+	va_start(args, str);
+	while (str[i + j])
 	{
-		if (str[i] == '%')
+		if (str[i + j] == '%')
 		{
-			i += skipformat(&str[i]);
-			ft_putstr_fd(fmated[j], 1);
-			free(fmated[j++]);
+			i++;
+			j += handling((char *)&str[i + j], args, &fmats_size);
 			continue ;
 		}
-		write(1, &str[i++], 1);
+		ft_putchar_fd(str[i + j], 1);
+		i++;
 	}
-	free(fmated);
-	return (i);
+	va_end(args);
+	return (i + fmats_size);
 }

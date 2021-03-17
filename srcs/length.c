@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 16:40:14 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/10 17:35:15 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/17 12:02:53 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,54 +70,46 @@ void	addprecision(t_flags *flags, int size)
 	return ;
 }
 
-void	negnumberswidth(t_flags *flags, char *tmpstr, int zeros)
+void	negnumberswidth(t_flags *flags, int zeros)
 {
-	char	*data_save;
-
-	data_save = NULL;
 	if (flags->pad == '0')
 	{
 		if (ft_strsrc("di", flags->type) && (ft_atoi(flags->data) < 0))
 		{
-			tmpstr[0] = '-';
-			data_save = ft_strdup(&flags->data[1]);
-			free(flags->data);
-			flags->data = data_save;
-			ft_fillwith(&tmpstr[1], '0', zeros);
+			ft_putchar_fd('-', 1);
+			ft_spamc('0', zeros);
+			ft_putstr_fd(&flags->data[1], 1);
+			return ;
 		}
 		else
-			ft_fillwith(tmpstr, '0', zeros);
+			ft_spamc('0', zeros);
 	}
 	else
-		ft_fillwith(tmpstr, ' ', zeros);
+		ft_spamc(' ', zeros);
+	ft_putstr_fd(flags->data, 1);
 }
 
-void	addwidth(t_flags *flags, int size)
+int	addwidth(t_flags *flags, int size)
 {
-	char	*str;
-	char	*tmpstr;
-
-	str = NULL;
-	tmpstr = NULL;
 	if (flags->width > size)
 	{
-		tmpstr = malloc(sizeof(char) * (flags->width - size + 1));
 		if (flags->just == 1)
 		{
-			ft_fillwith(tmpstr, ' ', flags->width - size);
-			str = ft_strjoin(flags->data, tmpstr);
+			ft_putstrl_fd(flags->data, size, 1);
+			ft_spamc(' ', flags->width - size);
 		}
 		else
 		{
 			if (ft_strsrc("diuxX", flags->type))
-				negnumberswidth(flags, tmpstr, flags->width - size);
+				negnumberswidth(flags, flags->width - size);
 			else
-				ft_fillwith(tmpstr, ' ', flags->width - size);
-			str = ft_strjoin(tmpstr, flags->data);
+			{
+				ft_spamc(' ', flags->width - size);
+				ft_putstrl_fd(flags->data, size, 1);
+			}
 		}
-		free(flags->data);
-		free(tmpstr);
-		flags->data = str;
+		return (flags->width);
 	}
-	return ;
+	ft_putstrl_fd(flags->data, size, 1);
+	return (size);
 }

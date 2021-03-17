@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/10 17:35:17 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/17 10:11:48 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,15 @@ int		get_flags(t_flags *flags, char *format, va_list args)
 **}
 */
 
-int		handling(char *format, va_list args, char **fmated)
+int		handling(char *format, va_list args, int *fmats_size)
 {
 	t_flags		*flags;
 	int			ret;
 
 	flags = malloc(sizeof(t_flags));
 	ret = get_flags(flags, format, args);
-	*fmated = flags_tostr(flags);
+	*fmats_size += flags_tostr(flags);
+	free(flags->data);
 	free(flags);
 	return (ret);
 }
