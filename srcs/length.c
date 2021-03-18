@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 16:40:14 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/17 12:02:53 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/18 14:57:34 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,8 @@ int	addwidth(t_flags *flags, int size)
 				ft_putstrl_fd(flags->data, size, 1);
 			}
 		}
-		return (flags->width);
+		return (flags->width - size);
 	}
 	ft_putstrl_fd(flags->data, size, 1);
-	return (size);
+	return (0);
 }

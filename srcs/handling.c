@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/17 10:11:48 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/17 18:13:47 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	f_fmat(char *str, va_list args, t_flags *flags)
 		if (ft_strsrc("dciuspxX%", str[i]))
 		{
 			flags->type = str[i];
-			flags->data = data_tostr(&flags->type, args);
+			flags->data = data_tostr(flags, args);
 			break ;
 		}
 		i++;

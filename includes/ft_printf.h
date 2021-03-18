@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:51 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/17 11:40:28 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/17 18:27:01 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void				ft_spamc(char c, int nb);
 ** tostr.c
 */
 
-char				*pointers_tostr(char *type, va_list args);
-void				*data_tostr(char *type, va_list args);
+char				*pointers_tostr(t_flags *flags, va_list args);
+void				*data_tostr(t_flags *flags, va_list args);
 void				hexa_tostr(t_flags *flags);
 int					flags_tostr(t_flags *flags);
 

@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 14:16:51 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/17 12:03:07 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:02:00 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 int main(void)
 {
 	printf("---------PRINTF----------\n");
-	printf("{%*c}\n", 0, 0);
+	ft_putstr_fd(ft_itoa(printf("hello\n")), 1);
 	printf("--------FT_PRINTF--------\n");
-	ft_printf("{%*c}\n", 0, 0);
+	ft_putstr_fd(ft_itoa(ft_printf("hello\n")), 1);
 	printf("-------------------------.\n");
 }

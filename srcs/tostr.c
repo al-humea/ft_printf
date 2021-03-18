@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/17 10:29:10 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/17 18:24:35 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Converts flags->data from alpha uns to alpha hexadecimal + adds 0x0 if ptr
 */
 
-char	*pointers_tostr(char *type, va_list args)
+char	*pointers_tostr(t_flags *flags, va_list args)
 {
 	void *ptr;
 
@@ -24,17 +24,21 @@ char	*pointers_tostr(char *type, va_list args)
 	ptr = va_arg(args, void *);
 	if (!ptr)
 	{
-		if (*type == 'p')
+		if (flags->type == 'p')
 			ptr = (void *)ft_strdup("(nil)");
-		if (*type == 's')
+		if (flags->type == 's')
+		{
+			if (flags->prec >= 0)
+				return (ptr = (void *)ft_strdup(""));
 			ptr = (void *)ft_strdup("(null)");
-		*type = 'n';
+		}
+		flags->type = 'n';
 	}
 	else
 	{
-		if (*type == 'p')
+		if (flags->type == 'p')
 			ptr = (void *)ft_lutoa((unsigned long)ptr);
-		if (*type == 's')
+		if (flags->type == 's')
 			ptr = (void *)ft_strdup((char *)ptr);
 	}
 	return (ptr);
@@ -92,22 +96,22 @@ int		flags_tostr(t_flags *flags)
 	return (size);
 }
 
-void	*data_tostr(char *type, va_list args)
+void	*data_tostr(t_flags *flags, va_list args)
 {
 	void	*ptr;
 	char	*tmps;
 
 	tmps = NULL;
 	ptr = NULL;
-	if (*type == 'p' || *type == 's')
-		ptr = (void *)pointers_tostr(type, args);
-	if (ft_strsrc("di", *type))
+	if (flags->type == 'p' || flags->type == 's')
+		ptr = (void *)pointers_tostr(flags, args);
+	if (ft_strsrc("di", flags->type))
 		ptr = (void *)ft_itoa(va_arg(args, int));
-	if (ft_strsrc("uxX", *type))
+	if (ft_strsrc("uxX", flags->type))
 		ptr = (void *)ft_utoa(va_arg(args, unsigned int));
-	if (*type == 'c')
+	if (flags->type == 'c')
 		ptr = (void *)ft_chardup(va_arg(args, int));
-	if (*type == '%')
+	if (flags->type == '%')
 		ptr = (void *)ft_chardup('%');
 	return (ptr);
 }

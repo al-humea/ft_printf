@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:56:39 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/17 10:22:17 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/18 14:58:27 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i + j] == '%')
 		{
-			i++;
+			j++;
 			j += handling((char *)&str[i + j], args, &fmats_size);
 			continue ;
 		}
