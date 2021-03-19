@@ -1,3 +1,0 @@
-make all
-clang -Wall -Wextra -Werror -W debugging.c libftprintf.a
-./a.out
