@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 16:40:14 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/18 14:57:34 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/19 08:46:35 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	negnumberswidth(t_flags *flags, int zeros)
 	ft_putstr_fd(flags->data, 1);
 }
 
-int	addwidth(t_flags *flags, int size)
+int		addwidth(t_flags *flags, int size)
 {
 	if (flags->width > size)
 	{

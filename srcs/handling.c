@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/17 18:13:47 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/19 09:06:12 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,24 +65,6 @@ int		get_flags(t_flags *flags, char *format, va_list args)
 	}
 	return (fmat_size);
 }
-
-/*
-** needs to get unconverted format, get flags, convert format using flags,
-** store converted formats in fmated using args if needed
-** returns size of unconverted fmat to skip in "store_fmats"
-**
-**
-**void printflags(t_flags *flags)
-**{
-**	printf("---\n");
-**	printf("%c\n", flags->type);
-**	printf("%d\n", flags->just);
-**	printf("%c\n", flags->pad);
-**	printf("%d\n", flags->width);
-**	printf("%d\n", flags->prec);
-**	printf("%s\n", flags->data);
-**}
-*/
 
 int		handling(char *format, va_list args, int *fmats_size)
 {

@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:29:42 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/10 17:40:54 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/19 08:47:56 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,3 @@ int		f_justifying(t_flags *flags, const char *str)
 	}
 	return (0);
 }
-
-

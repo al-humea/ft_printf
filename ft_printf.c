@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/13 15:56:39 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/18 14:58:27 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/19 08:46:14 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	valid_fmat(const char *str)
 /*
 ** ADD THE SIZE FMATED ELEMENTS TO RETURN VALUE
 */
-#include <stdio.h>
+
 int	ft_printf(const char *str, ...)
 {
 	int		i;
