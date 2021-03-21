@@ -1,1 +1,0 @@
-Potentiel bug avec 0 padding et précision
