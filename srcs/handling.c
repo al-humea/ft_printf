@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/08 14:17:13 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/19 09:06:12 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/21 19:00:50 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int		handling(char *format, va_list args, int *fmats_size)
 	ret = get_flags(flags, format, args);
 	*fmats_size += flags_tostr(flags);
 	free(flags->data);
+	flags->data = NULL;
 	free(flags);
+	flags = NULL;
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 11:51:23 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/31 12:22:17 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/21 19:07:14 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	i = 0;
 	i2 = 0;
 	size = ft_strlen(s1) + ft_strlen(s2);
-	if (!(joint = malloc(size + 1)))
+	if (!(joint = malloc(sizeof(char) * (size + 1))))
 		return (NULL);
 	while (i < size)
 	{

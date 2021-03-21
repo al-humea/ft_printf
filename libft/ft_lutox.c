@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 16:54:31 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/31 12:30:58 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/21 19:05:36 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char		*ft_lutox(unsigned long nbr)
 {
 	char *str;
 
-	if (!(str = malloc(ft_nbrlen(nbr) + 1)))
+	if (!(str = malloc(sizeof(char) * (ft_nbrlen(nbr) + 1))))
 		return (NULL);
 	str[0] = '\0';
 	while (nbr >= 16)

@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 10:37:01 by al-humea          #+#    #+#             */
-/*   Updated: 2021/02/15 16:49:07 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/21 19:06:32 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(const char *s1)
 
 	i = 0;
 	size = ft_strlen(s1);
-	if (!(nstr = malloc(size + 1)))
+	if (!(nstr = malloc(sizeof(char) * (size + 1))))
 		return (NULL);
 	while (i < size)
 	{

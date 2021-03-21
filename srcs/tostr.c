@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/18 19:00:50 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/21 19:01:50 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	hexa_tostr(t_flags *flags)
 	str = NULL;
 	nbr = ft_atolu(flags->data);
 	free(flags->data);
+	flags->data = NULL;
 	if (flags->type == 'p')
 	{
 		str = ft_lutox(nbr);
@@ -83,11 +84,13 @@ int		flags_tostr(t_flags *flags)
 	size = ft_strlen((char *)flags->data);
 	addprecision(flags, size);
 	if (flags->prec == 0 && ft_strsrc("diuxX", flags->type))
+	{
 		if (((char *)flags->data)[0] == '0')
 		{
 			free(flags->data);
 			flags->data = ft_strdup("");
 		}
+	}
 	if (flags->type == 'c')
 		size = 1;
 	else

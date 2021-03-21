@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 14:53:12 by al-humea          #+#    #+#             */
-/*   Updated: 2021/01/31 12:22:55 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/21 19:05:26 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char		*ft_itoa(int nbr)
 
 	nb = nbr;
 	m = 0;
-	if (!(str = malloc(12)))
+	if (!(str = malloc(sizeof(char) * 12)))
 		return (NULL);
 	if (nb < 0)
 	{
