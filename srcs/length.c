@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/01 16:40:14 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/22 11:48:11 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/22 12:30:11 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int		addwidth(t_flags *flags, int size)
 		}
 		else
 		{
-			if (ft_strsrc("diuxX", flags->type))
+			if (ft_strsrc("diuxX%", flags->type))
 				negnumberswidth(flags, flags->width - size);
 			else
 			{
