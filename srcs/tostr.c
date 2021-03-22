@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/22 11:01:22 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/22 11:02:35 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ char	*pointers_tostr(t_flags *flags, va_list args)
 		}
 		if (flags->type == 's')
 			ptr = (void *)ft_strdup("(null)");
-		
 	}
 	else
 	{
