@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/22 11:33:32 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/22 11:53:40 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	hexa_tostr(t_flags *flags)
 	flags->data = NULL;
 	if (flags->type == 'p')
 	{
-		str = ft_lutox(nbr);
+		if (nbr == 0 && flags->prec == 0)
+			str = ft_strdup("");
+		else
+			str = ft_lutox(nbr);
 		flags->data = ft_strjoin("0x", str);
 		free(str);
 	}
