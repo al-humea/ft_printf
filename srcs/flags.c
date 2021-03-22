@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:29:42 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/22 13:22:21 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/22 13:26:01 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,8 @@ char	f_padding(t_flags *flags, const char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '0')
-		{
-			if (flags->prec < 0 && ft_strsrc("diouxX", flags->type))
-				return ('0');
-		}
+		if (str[i] == '0' && (flags->prec < 0 || flags->type == '%'))
+			return ('0');
 		if (ft_strsrc("123456789.dciuspxX%", str[i]))
 			return (' ');
 		i++;
