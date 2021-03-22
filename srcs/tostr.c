@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/21 19:01:50 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/22 10:58:44 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,7 @@ char	*pointers_tostr(t_flags *flags, va_list args)
 		if (flags->type == 'p')
 			ptr = (void *)ft_strdup("(nil)");
 		if (flags->type == 's')
-		{
-			if (flags->prec != -1 && flags->prec < 6)
-				return (ptr = (void *)ft_strdup(""));
 			ptr = (void *)ft_strdup("(null)");
-		}
 		flags->type = 'n';
 	}
 	else
