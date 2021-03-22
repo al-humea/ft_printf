@@ -6,7 +6,7 @@
 /*   By: al-humea <al-humea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 16:18:40 by al-humea          #+#    #+#             */
-/*   Updated: 2021/03/22 11:25:25 by al-humea         ###   ########.fr       */
+/*   Updated: 2021/03/22 11:31:27 by al-humea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,15 @@ char	*pointers_tostr(t_flags *flags, va_list args)
 	ptr = va_arg(args, void *);
 	if (!ptr)
 	{
-		if (flags->type == 'p')
-		{
-			ptr = (void *)ft_strdup("(nil)");
-			flags->type = 'n';
-		}
 		if (flags->type == 's')
-			ptr = (void *)ft_strdup("(null)");
-	}
-	else
-	{
-		if (flags->type == 'p')
 		{
+			if (!ptr)
+				ptr = (void *)ft_strdup("(null)");
+			else
+				ptr = (void *)ft_strdup((char *)ptr);
+		}
+		if (flags->type == 'p')
 			ptr = (void *)ft_lutoa((unsigned long)ptr);
-			if (((char *)ptr)[0] == '0')
-			{
-				free(ptr);
-				ptr = ft_strdup ("(zzz)");
-				flags->type = 'n';
-			}
-		}
-		if (flags->type == 's')
-			ptr = (void *)ft_strdup((char *)ptr);
 	}
 	return (ptr);
 }
